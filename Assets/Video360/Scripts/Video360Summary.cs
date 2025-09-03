@@ -88,26 +88,9 @@ public class Video360Summary : MonoBehaviour
             statusList.Add("⚠️ PlayerLookController: Not found in scene");
         }
 
-#if UNITY_EDITOR
-        // Check for SimpleVideoServer script
-        var videoServer = FindObjectOfType<SimpleVideoServer>();
-        if (videoServer != null)
-        {
-            statusList.Add("✅ SimpleVideoServer: Found in scene (Editor only)");
-            if (videoServer.IsServerRunning)
-            {
-                statusList.Add($"✅ HTTP Server running at: {videoServer.GetServerURL()}");
-            }
-            else
-            {
-                statusList.Add("⚠️ HTTP Server not yet started (starts in Play mode)");
-            }
-        }
-        else
-        {
-            statusList.Add("⚠️ SimpleVideoServer: Not found in scene");
-        }
-#endif
+        // Note about external Python server
+        statusList.Add("ℹ️ External Python server required for URL video sources");
+        statusList.Add("   Run: python video_server.py 8080 videos");
 
         componentStatus = statusList.ToArray();
         

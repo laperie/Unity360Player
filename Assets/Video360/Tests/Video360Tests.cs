@@ -24,7 +24,6 @@ public class Video360Tests : MonoBehaviour
         results.Add(Test_Video360Config_HasValidSource_WithURL());
         results.Add(Test_Video360Config_HasValidSource_WithoutSource());
         results.Add(Test_Video360Config_GetSkyboxMaterial());
-        results.Add(Test_SimpleVideoServer_Properties());
         
         testResults = results.ToArray();
         
@@ -143,50 +142,6 @@ public class Video360Tests : MonoBehaviour
             };
         }
     }
-    
-#if UNITY_EDITOR
-    TestResult Test_SimpleVideoServer_Properties()
-    {
-        try
-        {
-            var serverObject = new GameObject("TestServer");
-            var server = serverObject.AddComponent<SimpleVideoServer>();
-            
-            bool portTest = server.port == 8080;
-            bool folderTest = server.videoFolder == "StreamingAssets/Videos";
-            
-            DestroyImmediate(serverObject);
-            
-            bool allPassed = portTest && folderTest;
-            
-            return new TestResult
-            {
-                testName = "SimpleVideoServer Properties",
-                passed = allPassed,
-                message = allPassed ? "Server properties configured correctly" : "Server properties incorrect"
-            };
-        }
-        catch (System.Exception e)
-        {
-            return new TestResult
-            {
-                testName = "SimpleVideoServer Properties",
-                passed = false,
-                message = $"Exception: {e.Message}"
-            };
-        }
-    }
-#else
-    TestResult Test_SimpleVideoServer_Properties()
-    {
-        return new TestResult
-        {
-            testName = "SimpleVideoServer Properties",
-            passed = true,
-            message = "Server only available in editor - test skipped"
-        };
-    }
-#endif
 
     void Start()
     {

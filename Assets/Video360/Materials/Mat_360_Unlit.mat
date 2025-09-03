@@ -21,10 +21,10 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 8400000, guid: f7a6295f2aa1e450f9cdc8d4bd23baef, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Cull: 1
+    - _Cull: 2
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

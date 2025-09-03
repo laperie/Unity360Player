@@ -67,5 +67,14 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
+# Video files (don't commit large video files)
+*.mp4
+*.avi
+*.mov
+*.wmv
+*.webm
+/videos/
+!/videos/README.txt
+
 # macOS
 .DS_Store

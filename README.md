@@ -1,6 +1,6 @@
 # Unity 360° Video Player
 
-A complete Unity package for immersive 360° video playback with built-in HTTP server, cross-platform controls, and multiple rendering modes. Perfect for VR applications, architectural visualization, and interactive media experiences.
+A complete Unity package for immersive 360° video playback with standalone Python HTTP server, cross-platform controls, and multiple rendering modes. Perfect for VR applications, architectural visualization, and interactive media experiences.
 
 ![Unity Version](https://img.shields.io/badge/Unity-2022.3+-blue.svg)
 ![Platform](https://img.shields.io/badge/Platform-Desktop%20%7C%20Mobile%20%7C%20WebGL-green.svg)
@@ -13,21 +13,25 @@ A complete Unity package for immersive 360° video playback with built-in HTTP s
    Copy the Assets/Video360/ folder to your Unity project
    ```
 
-2. **Open Demo Scene**
-   ```
-   Assets/Video360/Scenes/Video360_Demo.unity
+2. **Start Video Server**
+   ```bash
+   # Windows
+   start_server.bat
+   
+   # macOS/Linux  
+   ./start_server.sh
    ```
 
 3. **Add Your Video**
    ```
-   Drop your 360° MP4 file into: Assets/StreamingAssets/Videos/
+   Drop your 360° MP4 file into: videos/ folder
    Rename it to: sample360.mp4
    ```
 
-4. **Press Play** ▶️
+4. **Open Demo Scene & Play** ▶️
    ```
-   The HTTP server starts automatically
-   Your 360° video plays immediately at http://localhost:8080/
+   Assets/Video360/Scenes/Video360_Demo.unity
+   Your 360° video plays from http://localhost:8080/sample360.mp4
    ```
 
 **That's it!** Use mouse/touch to look around your 360° video.
@@ -39,7 +43,7 @@ A complete Unity package for immersive 360° video playback with built-in HTTP s
 - [Features](#features)
 - [System Requirements](#system-requirements)
 - [Installation](#installation)
-- [HTTP Server Guide](#http-server-guide)
+- [Python Server Guide](#python-server-guide)
 - [Usage Guide](#usage-guide)
 - [Configuration](#configuration)
 - [Platform Support](#platform-support)
@@ -55,7 +59,7 @@ A complete Unity package for immersive 360° video playback with built-in HTTP s
 
 ### Core Functionality
 - 🎥 **360° Video Playback** - Equirectangular format support
-- 🌐 **Built-in HTTP Server** - Local video streaming for development
+- 🐍 **Python HTTP Server** - Standalone video streaming server
 - 🎮 **Multi-Input Controls** - Mouse, touch, gyroscope support
 - 🔄 **Multiple Render Modes** - Sphere geometry and Unity skybox
 - 👀 **Stereo Video Support** - Mono, Side-by-Side, Over-Under layouts
@@ -117,51 +121,56 @@ After import, check the Unity Console for:
   ✅ Video360Config: Found
   ✅ VideoController: Found in scene
   ✅ PlayerLookController: Found in scene
-  ✅ SimpleVideoServer: Found in scene (Editor only)
+  ✅ Python Server: Running at http://localhost:8080/
 ```
 
 ---
 
-## 🌐 HTTP Server Guide
+## 🐍 Python Server Guide
 
-The built-in HTTP server enables seamless video streaming during development without manually configuring web servers.
+The standalone Python HTTP server provides efficient video streaming without integrating server code into Unity.
 
 ### Server Overview
-- **Purpose**: Local video streaming for Unity development
+- **Purpose**: External video streaming server for Unity projects
 - **Port**: 8080 (configurable)
 - **Protocol**: HTTP/1.1 with byte-range support
 - **CORS**: Enabled for WebGL compatibility
-- **Platform**: Editor-only (automatically excluded from builds)
+- **Platform**: Cross-platform (Windows, macOS, Linux)
 
-### Setup Instructions
+### Quick Start
 
-#### 1. Basic Setup
-```csharp
-// Add VideoServerManager prefab to your scene
-1. Drag Assets/Video360/Prefabs/VideoServerManager.prefab into scene
-2. Server automatically starts when scene plays
-3. Access videos at: http://localhost:8080/filename.mp4
+#### 1. Start Server
+```bash
+# Windows
+start_server.bat
+
+# macOS/Linux
+./start_server.sh
+
+# Manual start
+python video_server.py 8080 videos
 ```
 
 #### 2. Directory Structure
 ```
-Assets/
-├── StreamingAssets/
-│   └── Videos/
-│       ├── sample360.mp4      ← Your 360° videos go here
-│       ├── test_video_4K.mp4
-│       └── vr_experience.mp4
-└── Video360/
-    └── Server/
-        └── SimpleVideoServer.cs
+Project Root/
+├── videos/                    ← Your 360° videos go here
+│   ├── sample360.mp4
+│   ├── test_video_4K.mp4
+│   └── vr_experience.mp4
+├── video_server.py            ← Python server script
+├── start_server.bat           ← Windows startup script
+└── start_server.sh            ← Unix startup script
 ```
 
 #### 3. Server Configuration
-```csharp
-// In VideoServerManager component:
-public int port = 8080;                    // Server port
-public string videoFolder = "StreamingAssets/Videos";  // Video directory
-public bool enableDebugLogs = true;       // Console logging
+```python
+# Command line arguments:
+python video_server.py [port] [directory]
+
+# Examples:
+python video_server.py 8080 ./videos     # Default setup
+python video_server.py 9000 ./my_videos  # Custom port and folder
 ```
 
 ### Server Features
@@ -188,60 +197,58 @@ Access-Control-Allow-Headers: Range
 #### Directory Listing
 Navigate to `http://localhost:8080/` to see available videos:
 ```html
-<h1>Available Videos</h1>
-<ul>
-  <li><a href="/sample360.mp4">sample360.mp4</a></li>
-  <li><a href="/test_video.mp4">test_video.mp4</a></li>
-</ul>
+<h1>360° Video Server</h1>
+<h2>Directory: ./videos</h2>
+<a href="sample360.mp4" class="video">🎥 sample360.mp4</a>
+<a href="test_video.mp4" class="video">🎥 test_video.mp4</a>
 ```
 
 ### Server Management
 
-#### Start/Stop Server
-```csharp
-// Access server component
-SimpleVideoServer server = FindObjectOfType<SimpleVideoServer>();
+#### Server Control
+```bash
+# Start server
+python video_server.py 8080 videos
 
-// Check status
-if (server.IsServerRunning)
-{
-    Debug.Log($"Server running at: {server.GetServerURL()}");
-}
+# Stop server 
+Ctrl+C (in terminal)
 
-// Server automatically stops when exiting Play mode
+# Check server status
+curl http://localhost:8080/
 ```
 
 #### Server Logs
-Monitor server activity in Unity Console:
+Monitor server activity in terminal:
 ```
-[VideoServer] Started at http://localhost:8080/
-[VideoServer] Serving videos from: /path/to/project/Assets/StreamingAssets/Videos
-[VideoServer] Request: GET /sample360.mp4
-[VideoServer] Serving sample360.mp4: bytes 0-2047999/2048000
+[2024-01-01 12:00:00] Starting 360° Video HTTP Server...
+[2024-01-01 12:00:00] Server running at http://localhost:8080/
+[2024-01-01 12:00:01] GET /sample360.mp4 - 206 Partial Content
+[2024-01-01 12:00:02] Range request: bytes 0-1023/2048000
 ```
 
 #### Port Configuration
 Change server port if 8080 is in use:
-```csharp
-// In VideoServerManager inspector:
-Port: 8081  // or any available port
+```bash
+# Use different port
+python video_server.py 8081 videos
 
-// URL becomes: http://localhost:8081/
+# Server automatically finds free port if busy
+# Server started on port 8081 (8080 was busy)
 ```
 
 ### Production Deployment
 
-The HTTP server is **Editor-only** and automatically excluded from builds:
+The Python server is for **development only**. For production:
 
 #### Desktop Builds
 ```csharp
-// Use local VideoClip references instead of URLs
-config.videoClip = yourVideoClip;  // Instead of URL
+// Use local VideoClip references
+config.videoClip = yourVideoClip;  // No server needed
 ```
 
 #### Mobile/WebGL Builds
 ```csharp
-// Use external CDN or hosting service
+// Use CDN or web hosting service
 config.videoURL = "https://your-cdn.com/videos/sample360.mp4";
 ```
 
