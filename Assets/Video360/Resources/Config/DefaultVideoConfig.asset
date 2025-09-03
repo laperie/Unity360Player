@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6ca54c90d5a04c8282a7341e678d4a7, type: 3}
+  m_Name: DefaultVideoConfig
+  m_EditorClassIdentifier: 
+  videoURL: http://localhost:8080/sample360.mp4
+  videoClip: {fileID: 0}
+  renderMode: 0
+  stereoLayout: 0
+  renderTexture: {fileID: 8400000, guid: f7a6295f2aa1e450f9cdc8d4bd23baef, type: 2}
+  sphereMaterial: {fileID: 2100000, guid: bd497d93c65994e8594b88bff9ad98fd, type: 2}
+  skyboxMaterialMono: {fileID: 2100000, guid: 8a3ff8924633f40f0b54eff029e4c547, type: 2}
+  skyboxMaterialSBS: {fileID: 2100000, guid: 28d4c47617a82472fbef3aa681f646f1, type: 2}
+  skyboxMaterialOU: {fileID: 2100000, guid: 5e192be537aa94628ab7bed48dd3eb2c, type: 2}
+  autoPlay: 1
+  isLooping: 1
+  volume: 1
