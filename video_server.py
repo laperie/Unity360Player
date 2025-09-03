@@ -14,6 +14,10 @@ Default:
 
 Example:
     python video_server.py 8080 ./my_videos
+
+License:
+    MIT License - free for commercial and personal use.
+    See LICENSE file for details.
 """
 
 import os

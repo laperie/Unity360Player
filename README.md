@@ -4,7 +4,7 @@ A complete Unity package for immersive 360° video playback with standalone Pyth
 
 ![Unity Version](https://img.shields.io/badge/Unity-2022.3+-blue.svg)
 ![Platform](https://img.shields.io/badge/Platform-Desktop%20%7C%20Mobile%20%7C%20WebGL-green.svg)
-![License](https://img.shields.io/badge/License-Educational-yellow.svg)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
 
 ## 🚀 Quick Start (60 seconds)
 
@@ -1420,13 +1420,47 @@ Future enhancements being considered:
 
 ---
 
+## 📄 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+### What this means:
+- ✅ **Commercial Use**: Use in commercial projects
+- ✅ **Modification**: Modify and adapt the code
+- ✅ **Distribution**: Share and redistribute
+- ✅ **Private Use**: Use in private projects
+- ✅ **No Attribution Required**: (but appreciated!)
+
+### You are free to:
+- Use this code in your Unity projects (personal or commercial)
+- Modify the scripts and adapt them to your needs
+- Distribute modified or unmodified versions
+- Include in Unity Asset Store packages
+- Use in client work and freelance projects
+
+### No warranty:
+This software is provided "as is" without any warranty. Use at your own risk.
+
+---
+
 ## 📞 Contact
 
 For questions, suggestions, or collaboration opportunities:
 
-- **GitHub**: [Repository Issues](https://github.com/your-repo/unity-360-video/issues)
-- **Unity Forums**: Search for "Unity 360 Video Player"
+- **GitHub**: [Repository Issues](https://github.com/laperie/Unity360Player/issues)
+- **Unity Forums**: Search for "Unity 360 Video Player" 
 - **Discord**: Join Unity development communities
+
+---
+
+## 🙏 Contributing
+
+Contributions are welcome! Please feel free to:
+- Report bugs and issues
+- Suggest new features  
+- Submit pull requests
+- Improve documentation
+- Share your 360° video projects
 
 ---
 
