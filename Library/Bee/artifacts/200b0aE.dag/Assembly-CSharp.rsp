@@ -332,9 +332,9 @@
 -analyzer:"/Applications/Unity/Hub/Editor/2022.3.13f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Video360/Scripts/PlayerLookController.cs"
 "Assets/Video360/Scripts/Video360Config.cs"
+"Assets/Video360/Scripts/Video360Manager.cs"
 "Assets/Video360/Scripts/Video360Summary.cs"
 "Assets/Video360/Scripts/VideoController.cs"
-"Assets/Video360/Server/SimpleVideoServer.cs"
 "Assets/Video360/Tests/Video360Tests.cs"
 -langversion:9.0
 

@@ -345,19 +345,25 @@ def main():
 
     # Start server
     try:
-        server = HTTPServer(('', port), handler)
+        # Bind to all interfaces (0.0.0.0) so built applications can access it
+        server = HTTPServer(('0.0.0.0', port), handler)
         print(f"""
 ╔══════════════════════════════════════════════════════════════════════════════╗
 ║                           360° Video HTTP Server                             ║
 ╠══════════════════════════════════════════════════════════════════════════════╣
-║  Server URL: http://localhost:{port:<8}                                      ║
+║  Server URLs:                                                                ║
+║    • Unity Editor: http://localhost:{port:<8}                               ║
+║    • Built Apps:   http://127.0.0.1:{port:<8}                               ║
+║    • Network:      http://[your-ip]:{port:<8}                               ║
+║                                                                              ║
 ║  Directory:  {video_directory:<60} ║
 ║  Status:     Running... (Press Ctrl+C to stop)                              ║
 ║                                                                              ║
 ║  Unity Setup:                                                                ║
 ║  1. Place video files in: {video_directory:<48} ║
-║  2. Use URL format: http://localhost:{port}/filename.mp4                     ║
-║  3. Configure in Unity Video360Config asset                                 ║
+║  2. Editor: http://localhost:{port}/filename.mp4                            ║
+║  3. Builds: http://127.0.0.1:{port}/filename.mp4                            ║
+║  4. Configure in Unity Video360Config asset                                 ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 """)
         

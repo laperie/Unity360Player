@@ -31,7 +31,7 @@ A complete Unity package for immersive 360° video playback with standalone Pyth
 4. **Open Demo Scene & Play** ▶️
    ```
    Assets/Video360/Scenes/Video360_Demo.unity
-   Your 360° video plays from http://localhost:8080/sample360.mp4
+   Your 360° video plays from http://127.0.0.1:8080/sample360.mp4
    ```
 
 **That's it!** Use mouse/touch to look around your 360° video.
