@@ -1,5 +1,0 @@
-sceneSetups:
-- path: Assets/Video360/Scenes/Video360_Demo.unity
-  isLoaded: 1
-  isActive: 1
-  isSubScene: 0
